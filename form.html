@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+  <head>
+    <title>Forms</title>
+    <link rel="stylesheet" href="./form.css" />
+  </head>
+  <body>
+    <header>html - forms</header>
+    
+    <div class="form-container">
+        
+      <form autocomplete="off" onsubmit="onFormSubmit()">
+        <label>Name</label>
+        <input type="text" id="formName"  /><span id="war"></span><br />
+        <label>DOB</label>
+        <input  type="date" id="formdob" onchange="dateChange()"></input><span id="war"></span><br />
+        <label>Age</label>
+        <input type="number" id="formage" disabled/><span id="war"></span><br />
+        <label>E-mail</label>
+        <input type="email" id="formemail" /><span id="war"></span>
+        <label>Mobile Number</label>
+        <input
+          type="number"
+          id="formMobileno"
+        /><br />
+        <button type="submit" >Add</button>
+        <button type="reset" class="warning">reset</button> 
+        <p id="error"></p>       
+      </form>
+    </div>
+    <table id="storeData">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Age</th>
+          <th>E-mail</th>
+          <th>MobileNumber</th>
+          
+        </tr>
+      </thead>
+
+      <tbody id="tbody"></tbody>
+    </table>
+    <script src="./form.js"></script>
+  </body>
+</html>
