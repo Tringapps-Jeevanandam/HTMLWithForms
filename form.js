@@ -1,48 +1,46 @@
 const dateChange = () => {
-  var dob = new Date(document.getElementById("formdob").value);
-  var currdate = new Date();
+  let dob = new Date(document.getElementById("formdob").value);
+  let currdate = new Date();
+  console.log(currdate)
   let byear = dob.getFullYear();
-  let bday = dob.getDate();
   let bmnth = dob.getMonth();
-  let day = currdate.getDate();
   let mnth = currdate.getMonth();
   let year = currdate.getFullYear();
-  let age = bmnth > mnth ? year - byear - 1 :  year -byear;
-  age = age<=0 ? 0:age;
+  let age = bmnth > mnth ? year - byear - 1 : year - byear;
+  age = age <= 0 ? 0 : age;
   document.getElementById("formage").value = age;
 
-  if(dob < currdate){
+  if (dob < currdate) {
     return true;
-  }
-  else{
+  } else {
     return false;
   }
 };
 
 const validateForm = () => {
-  let name = document.getElementById("formName").value;
-  let email = document.getElementById("formemail").value;
-  let date = document.getElementById("formdob").value;
-  let mobileno = document.getElementById("formMobileno").value;
+  let name = document.getElementById("formName");
+  let email = document.getElementById("formemail");
+  let date = document.getElementById("formdob");
+  let mobileno = document.getElementById("formMobileno");
   let errorMessage = "";
 
-  if (name == "") {
+  if (name.value == "") {
     errorMessage += "Name must be filled out<br>";
   } else if (!/^[a-zA-Z]+$/.test(name)) {
     errorMessage += "Name must be alphabet<br>";
   }
 
-  if (date == "") {
+  if (date.value == "") {
     errorMessage += "Date must be filled out<br>";
   } else if (!dateChange()) {
     errorMessage += "Date must be before today<br>";
   }
 
-  if (email == "") {
+  if (email.value == "") {
     errorMessage += "Email must be filled out<br>";
   }
 
-  if (mobileno == "") {
+  if (mobileno.value == "") {
     errorMessage += "Mobile Number must be filled out<br>";
   } else if (!/^[6-9]\d{9}$/.test(mobileno)) {
     errorMessage += "Enter Valid mobile number<br>";
@@ -54,7 +52,9 @@ const validateForm = () => {
     console.log(errorMessage);
     return false;
   } else {
-    document.getElementById("error").innerHTML = "scroll down to view details<br><img src='down.svg' />";
+    alert("Details submitted!!!");
+    document.getElementById("error").innerHTML =
+      "scroll down to view details<br><img src='down.svg' />";
     document.getElementById("error").style.color = "blue";
   }
 
@@ -84,18 +84,18 @@ const readForm = () => {
 
 const renderForm = (formData) => {
   let tableData = "";
-  for (let i = 0; i < formData.length; i++) {
+  for (let i of formData) {
     tableData +=
       "<tr><td>" +
-      formData[i].name +
+      i.name +
       "</td><td>" +
-      formData[i].dob +
+      i.dob +
       "</td><td>" +
-      formData[i].age +
+      i.age +
       "</td><td>" +
-      formData[i].email +
+      i.email +
       "</td><td>" +
-      formData[i].mobileno ;
+      i.mobileno;
   }
   document.getElementById("tbody").innerHTML = tableData;
 };
@@ -104,8 +104,6 @@ const reset = () => {
   document.getElementById("formName").value = "";
   document.getElementById("formage").value = "";
   document.getElementById("formdob").value = "";
-
   document.getElementById("formemail").value = "";
   document.getElementById("formMobileno").value = "";
-  console.log("reser");
 };
