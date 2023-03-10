@@ -10,11 +10,7 @@ const dateChange = () => {
   age = age <= 0 ? 0 : age;
   document.getElementById("formage").value = age;
 
-  if (dob < currdate) {
-    return true;
-  } else {
-    return false;
-  }
+  return dob < currdate;
 };
 
 const validateForm = () => {
